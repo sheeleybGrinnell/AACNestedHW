@@ -1,21 +1,29 @@
 import java.util.NoSuchElementException;
 
+import util.AssociativeArray;
+import util.NullKeyException;
+
 /**
  * Represents the mappings for a single category of items that should
  * be displayed
  * 
- * @author Catie Baker & YOUR NAME HERE
+ * @author Catie Baker & Benjamin Sheeley
  *
  */
 public class AACCategory implements AACPage {
 
+
+	/* FIELDS */
+	String name;
+
+	AssociativeArray<String, String> pathToWord;
 	
 	/**
 	 * Creates a new empty category with the given name
 	 * @param name the name of the category
 	 */
 	public AACCategory(String name) {
-
+		this.name = name;
 	}
 	
 	/**
@@ -24,7 +32,11 @@ public class AACCategory implements AACPage {
 	 * @param text the text that image should speak
 	 */
 	public void addItem(String imageLoc, String text) {
-
+		try {
+			pathToWord.set(imageLoc, text);
+		} catch (NullKeyException e) {
+			System.err.println("Invalid key provided");
+		}
 	}
 
 	/**
@@ -33,7 +45,7 @@ public class AACCategory implements AACPage {
 	 * it should return an empty array
 	 */
 	public String[] getImageLocs() {
-		return null;
+		return new String[] { "img/food/icons8-french-fries-96.png", "img/food/icons8-watermelon-96.png" }; // STUB
 	}
 
 	/**
@@ -41,7 +53,7 @@ public class AACCategory implements AACPage {
 	 * @return the name of the category
 	 */
 	public String getCategory() {
-		return "";
+		return this.name;
 	}
 
 	/**
@@ -52,7 +64,7 @@ public class AACCategory implements AACPage {
 	 * 		   category
 	 */
 	public String select(String imageLoc) {
-		return "";
+		return "television";  // STUB
 	}
 
 	/**
