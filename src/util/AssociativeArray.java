@@ -35,7 +35,7 @@ public class AssociativeArray<K, V> {
   /**
    * The array of key/value pairs.
    */
-  KVPair<K, V> pairs[];
+  public KVPair<K, V> pairs[];
 
   // +--------------+------------------------------------------------
   // | Constructors |
@@ -210,7 +210,7 @@ public class AssociativeArray<K, V> {
       throw new NullKeyException();
     } else {
       for (int i = 0; i < this.size; i++) {
-        if (this.pairs[i].key == key) {
+        if (this.pairs[i].key.equals(key)) {
           return i;
         }
       }

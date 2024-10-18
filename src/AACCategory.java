@@ -1,6 +1,7 @@
 import java.util.NoSuchElementException;
 
 import util.AssociativeArray;
+import util.KeyNotFoundException;
 import util.NullKeyException;
 
 /**
@@ -16,7 +17,7 @@ public class AACCategory implements AACPage {
 	/* FIELDS */
 	String name;
 
-	AssociativeArray<String, String> pathToWord;
+	AssociativeArray<String, String> pathToWord = new AssociativeArray<>();
 	
 	/**
 	 * Creates a new empty category with the given name
@@ -45,7 +46,11 @@ public class AACCategory implements AACPage {
 	 * it should return an empty array
 	 */
 	public String[] getImageLocs() {
-		return new String[] { "img/food/icons8-french-fries-96.png", "img/food/icons8-watermelon-96.png" }; // STUB
+		String[] resultArr = new String[pathToWord.size()];
+		for (int i = 0; i < pathToWord.size(); i++) {
+			resultArr[i] = pathToWord.pairs[i].key;
+		}
+		return resultArr;
 	}
 
 	/**
@@ -63,8 +68,13 @@ public class AACCategory implements AACPage {
 	 * @throws NoSuchElementException if the image provided is not in the current
 	 * 		   category
 	 */
-	public String select(String imageLoc) {
-		return "television";  // STUB
+	public String select(String imageLoc) throws NoSuchElementException {
+		try {
+			String result = pathToWord.get(imageLoc);
+			return result;
+		} catch (KeyNotFoundException e) {
+			throw new NoSuchElementException();
+		}
 	}
 
 	/**
@@ -73,6 +83,6 @@ public class AACCategory implements AACPage {
 	 * @return true if it is in the category, false otherwise
 	 */
 	public boolean hasImage(String imageLoc) {
-		return false;
+		return pathToWord.hasKey(imageLoc);
 	}
 }
