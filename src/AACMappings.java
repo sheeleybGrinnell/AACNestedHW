@@ -1,12 +1,9 @@
 import util.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.file.NoSuchFileException;
 import java.util.NoSuchElementException;
-import java.io.FileNotFoundException;
 
 /**
  * Creates a set of mappings of an AAC that has two levels,
